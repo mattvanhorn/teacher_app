@@ -13,6 +13,24 @@
   <body>
     <% if flash[:notice]%><p class="notice"><%= notice %></p><% end %>
     <% if flash[:alert]%><p class="alert"><%= alert %></p><% end %>
+
+    <% if user_signed_in? %>
+      <div> Welcome <%= current_user.email %> </div>
+    <% end %>
+
+    <nav>
+      <ul>
+        <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %><li>
+        <% else %>
+          <li><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li><%= link_to "Sign in", new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
     <%= yield %>
+    <footer>
+      Please forgive lack of styling for now. Hopefully I will have time to add it later.
+    </footer>
   </body>
 </html>
