@@ -1,0 +1,13 @@
+<div id="<%= dom_id document %>">
+  <p>
+    <strong>Title:</strong>
+    <%= document.title %>
+  </p>
+
+  <% if document.file.attached? %>
+  <p>
+    <strong>File:</strong>
+    <%= document.file.filename %>
+  </p>
+  <% end %>
+</div>
