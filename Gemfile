@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # Use devise for authentication
 gem "devise"
 
+# Use redcarpet for markdown rendering
+gem "redcarpet"
+
 # Use Sass to process CSS
 # gem "sassc-rails"
 

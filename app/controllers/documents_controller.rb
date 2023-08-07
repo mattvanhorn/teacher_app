@@ -8,6 +8,11 @@ class DocumentsController < ApplicationController
 
   # GET /documents/1 or /documents/1.json
   def show
+    respond_to do |format|
+      format.html
+      format.preview { render body: @document.to_markdown.html_safe }
+    end
+
   end
 
   # GET /documents/new

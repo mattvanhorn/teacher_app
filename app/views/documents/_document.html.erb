@@ -7,7 +7,7 @@
   <% if document.file.attached? %>
   <p>
     <strong>File:</strong>
-    <%= document.file.filename %>
+    <%= link_to document.file.filename, document_path(document, format: :preview) %>
   </p>
   <% end %>
 </div>
