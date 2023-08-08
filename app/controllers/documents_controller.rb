@@ -4,7 +4,9 @@ class DocumentsController < ApplicationController
 
   # GET /documents or /documents.json
   def index
-    @documents = Document.all
+    @folders = current_user.folders
+    @my_documents = @folders.map(&:documents).flatten
+    @documents = Document.where(folder: nil)
   end
 
   # GET /documents/1 or /documents/1.json
@@ -15,18 +17,21 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # GET /documents/new
+  # GET /documents/new or /folder/:folder_id/documents/new
   def new
-    @document = Document.new
+    @folder = current_user.folders.find_by(id: params[:folder_id])
+    @document = Document.new(folder: @folder)
   end
 
   # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents or /documents.json
+  # POST /documents or /folder/:folder_id/documents
   def create
-    @document = Document.new(document_params)
+    # prevent URL twiddling to create documents in other users' folders
+    folder = current_user.folders.find_by(id: params[:folder_id])
+    @document = Document.new(document_params.merge(folder: folder))
 
     respond_to do |format|
       if @document.save

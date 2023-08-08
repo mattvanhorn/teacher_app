@@ -1,6 +1,5 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Documents</h1>
+<h1>Public Documents</h1>
 
 <div id="documents">
   <table>
@@ -19,4 +18,27 @@
   </table>
 </div>
 
+<% if current_user.teacher? %>
+<h1>My Documents</h1>
+
+<div id="my-documents">
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>File</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @my_documents.each do |document| %>
+      <%= render document %>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
 <%= link_to "New document", new_document_path %>
+
+<% end %>
+

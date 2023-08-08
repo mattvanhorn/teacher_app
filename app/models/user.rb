@@ -1,6 +1,9 @@
 class User < ApplicationRecord
   ROLES = %w[teacher student admin].freeze
 
+  has_many :folders, dependent: :destroy
+  has_many :documents, through: :folders
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

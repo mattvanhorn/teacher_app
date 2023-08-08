@@ -1,0 +1,31 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render(@folder) %>
+  </tbody>
+</table>
+
+<h2>Documents</h2>
+<%= render :partial => "documents/document_file", collection: @folder.documents, as: :document %>
+
+<div>
+  <% if policy(Document).create? %>
+    <p><%= link_to "Add a document", new_folder_document_path(@folder) %>
+  <% end %>
+
+  <% if policy(@folder).edit? %>
+    <p><%= link_to "Rename this folder", edit_folder_path(@folder) %></p>
+  <% end %>
+
+  <p><%= link_to "Back to folders", folders_path %></p>
+
+  <% if policy(@folder).destroy? %>
+    <p><%= button_to "Destroy this folder", @folder, method: :delete, data: { confirm: "Are you sure? This will destroy all included documents, too." }  %></p>
+  <% end %>
+</div>

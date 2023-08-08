@@ -12,13 +12,13 @@
 </table>
 
 <div>
-  <% if policy(document).edit? %>
+  <% if policy(@document).edit? %>
     <p><%= link_to "Edit this document", edit_document_path(@document) %></p>
   <% end %>
 
   <p><%= link_to "Back to documents", documents_path %></p>
 
-  <% if policy(document).destroy? %>
+  <% if policy(@document).destroy? %>
     <p><%= button_to "Destroy this document", @document, method: :delete, data: { confirm: "Are you sure?" }  %></p>
   <% end %>
 </div>

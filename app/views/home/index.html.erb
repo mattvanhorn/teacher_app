@@ -1,6 +1,32 @@
-</h1>Hello CodePath</h1>
+<h1>Hello CodePath</h1>
 
-<p>Now at 4.5 hours. Have to stop again for a prior commitment.</p>
+<% if user_signed_in? %>
+<% case current_user.role %>
+    <% when "teacher" %>
+        <h2>My Folders</h2>
+        <div id="folders">
+        <table>
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Size</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <% current_user.folders.each do |folder| %>
+            <%= render folder %>
+            <% end %>
+            </tbody>
+        </table>
+        </div>
+        <%= link_to "New folder", new_folder_path %>
+    <% when "student" %>
+        <h2>Folders</h2>
+    <% end %>
+<% end %>
+
+<p>Now at 7 hours.</p>
 
 <h2>What I've done so far (barebones/unstyled):</h2>
 <ul>
@@ -12,11 +38,12 @@
     <li>Access controls</li>
     <li>Admin interface for us to manage teacher accounts</li>
     <li>Student accounts (just the student role, so far)</li>
+    <li>Folders of files</li>
 </ul>
 
 <h2>Next up:</h2>
 <ul>
-    <li>Folders of files</li>
+    <li>Student accounts: register as student</li>
     <li>Students being able to view a list of files in a folder</li>
     <li>View metrics for documents</li>
     <li>Revision history</li>

@@ -23,7 +23,7 @@ class DocumentPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.teacher?
+    @user.teacher? && owns_document?
   end
 
   def edit?
@@ -31,7 +31,13 @@ class DocumentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.teacher?
+    @user.teacher? && owns_document?
+  end
+
+  private
+
+  def owns_document?
+    @document.folder ? (@document.folder.user == @user) : true
   end
 
 end
