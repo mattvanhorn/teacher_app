@@ -18,7 +18,7 @@
 
   <div>
     <%= form.label :folder, style: "display: block" %>
-    <%= collection_select(:document, :folder_id, current_user.folders, :id, :name) %>
+    <%= collection_select(:document, :folder_id, current_user.folders, :id, :name, :include_blank => true) %>
   </div>
 
   <div>
