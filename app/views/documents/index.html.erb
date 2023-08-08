@@ -3,12 +3,20 @@
 <h1>Documents</h1>
 
 <div id="documents">
-  <% @documents.each do |document| %>
-    <%= render document %>
-    <p>
-      <%= link_to "Show this document", document %>
-    </p>
-  <% end %>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>File</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @documents.each do |document| %>
+      <%= render document %>
+    <% end %>
+    </tbody>
+  </table>
 </div>
 
 <%= link_to "New document", new_document_path %>

@@ -1,1 +1,1 @@
-Mime::Type.register "text/html", :preview
+Mime::Type.register_alias "text/html", :preview

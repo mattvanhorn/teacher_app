@@ -1,8 +1,24 @@
-<%= render(@document) %>
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>File</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render(@document) %>
+  </tbody>
+</table>
 
 <div>
-  <%= link_to "Edit this document", edit_document_path(@document) %> |
-  <%= link_to "Back to documents", documents_path %>
+  <% if policy(document).edit? %>
+    <p><%= link_to "Edit this document", edit_document_path(@document) %></p>
+  <% end %>
 
-  <%= button_to "Destroy this document", @document, method: :delete %>
+  <p><%= link_to "Back to documents", documents_path %></p>
+
+  <% if policy(document).destroy? %>
+    <p><%= button_to "Destroy this document", @document, method: :delete, data: { confirm: "Are you sure?" }  %></p>
+  <% end %>
 </div>

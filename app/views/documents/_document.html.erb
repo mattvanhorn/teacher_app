@@ -1,13 +1,18 @@
-<div id="<%= dom_id document %>">
-  <p>
-    <strong>Title:</strong>
-    <%= document.title %>
-  </p>
 
-  <% if document.file.attached? %>
-  <p>
-    <strong>File:</strong>
-    <%= link_to document.file.filename, document_path(document, format: :preview) %>
-  </p>
-  <% end %>
-</div>
+      <tr id="<%= dom_id document %>">
+        <td><%= document.title %></td>
+        <td>
+          <% if document.file.attached? %>
+            <%= link_to document.file.filename, document_path(document, format: :preview) %>
+          <% end %>
+        </td>
+        <td>
+          <% if policy(document).edit? %>
+            <%= link_to "Edit", edit_document_path(document) %>
+          <% end %>
+          &nbsp;
+          <% if policy(document).destroy? %>
+            <%= link_to "Destroy", document_path(document), method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %>
+        </td>
+      </tr>

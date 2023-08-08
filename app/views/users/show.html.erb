@@ -1,0 +1,19 @@
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+        <%= render(@user) %>
+    </tbody>
+  </table>
+
+
+<div>
+  <%= link_to "Edit this teacher", edit_user_path(@user) %> |
+  <%= link_to "Back to teachers", users_path %>
+
+  <%= button_to "Destroy this teacher", @user, method: :delete %>
+</div>

@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 # Use devise for authentication
 gem "devise"
 
+# Use pundit for authorization
+gem "pundit", "~> 2.3"
+
 # Use redcarpet for markdown rendering
 gem "redcarpet"
 

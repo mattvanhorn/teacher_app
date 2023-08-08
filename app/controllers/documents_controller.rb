@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy]
+  before_action :authorize_user
 
   # GET /documents or /documents.json
   def index
@@ -12,7 +13,6 @@ class DocumentsController < ApplicationController
       format.html
       format.preview { render body: @document.to_markdown.html_safe }
     end
-
   end
 
   # GET /documents/new
@@ -66,6 +66,10 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
+    end
+
+    def authorize_user
+      authorize(@document || Document)
     end
 
     # Only allow a list of trusted parameters through.
