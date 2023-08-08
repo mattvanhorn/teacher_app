@@ -1,5 +1,6 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: %i[ show edit update destroy]
+  before_action :set_folder
   before_action :authorize_user
 
   # GET /documents or /documents.json
@@ -13,13 +14,15 @@ class DocumentsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.preview { render body: @document.to_markdown.html_safe }
+      format.preview {
+        @document.update_column(:views, @document.views + 1)
+        render body: @document.to_markdown.html_safe
+      }
     end
   end
 
   # GET /documents/new or /folder/:folder_id/documents/new
   def new
-    @folder = current_user.folders.find_by(id: params[:folder_id])
     @document = Document.new(folder: @folder)
   end
 
@@ -71,6 +74,10 @@ class DocumentsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_document
       @document = Document.find(params[:id])
+    end
+
+    def set_folder
+      @folder = current_user.folders.find_by(id: params[:folder_id])
     end
 
     def authorize_user

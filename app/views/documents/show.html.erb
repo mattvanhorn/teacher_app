@@ -3,6 +3,7 @@
     <tr>
       <th>Title</th>
       <th>File</th>
+      <th>Views</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -16,7 +17,8 @@
     <p><%= link_to "Edit this document", edit_document_path(@document) %></p>
   <% end %>
 
-  <p><%= link_to "Back to documents", documents_path %></p>
+  <% destination = @folder ? folder_documents_path(@folder) : documents_path %>
+  <p><%= link_to "Back to documents", destination %></p>
 
   <% if policy(@document).destroy? %>
     <p><%= button_to "Destroy this document", @document, method: :delete, data: { confirm: "Are you sure?" }  %></p>

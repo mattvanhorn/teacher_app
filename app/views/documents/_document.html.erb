@@ -6,6 +6,7 @@
             <%= link_to document.file.filename, document_path(document, format: :preview) %>
           <% end %>
         </td>
+        <td><%= document.views %></td>
         <td>
           <% if policy(document).edit? %>
             <%= link_to "Edit", edit_document_path(document) %>

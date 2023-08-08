@@ -5,5 +5,6 @@
 <br/>
 
 <div>
-  <%= link_to "Back to documents", documents_path %>
+  <% destination = @folder ? folder_documents_path(@folder) : documents_path %>
+  <%= link_to "Back to documents", destination %>
 </div>
