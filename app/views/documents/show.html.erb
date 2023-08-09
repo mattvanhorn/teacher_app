@@ -13,14 +13,6 @@
 </table>
 
 <div>
-  <% if policy(@document).edit? %>
-    <p><%= link_to "Edit this document", edit_document_path(@document) %></p>
-  <% end %>
-
   <% destination = @folder ? folder_documents_path(@folder) : documents_path %>
   <p><%= link_to "Back to documents", destination %></p>
-
-  <% if policy(@document).destroy? %>
-    <p><%= button_to "Destroy this document", @document, method: :delete, data: { confirm: "Are you sure?" }  %></p>
-  <% end %>
 </div>

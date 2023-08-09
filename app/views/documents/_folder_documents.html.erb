@@ -1,0 +1,9 @@
+<h2>Folders</h2>
+<div id="folders">
+    <% folders.each do |folder| %>
+    <h3><%= folder.name %></h3>
+    <ul>
+    <%= render :partial => "documents/document_file", collection: folder.documents, as: :document %>
+    </ul>
+    <% end %>
+</div>

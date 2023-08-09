@@ -13,7 +13,7 @@
           <% end %>
           &nbsp;
           <% if policy(document).destroy? %>
-            <%= link_to "Destroy", document_path(document), method: :delete, data: { confirm: "Are you sure?" } %>
+            <%= link_to "Destroy", document, method: :delete, data: { "turbo-method": :delete, confirm: "Are you sure?", "turbo-confirm": "Are you sure?" } %>
           <% end %>
         </td>
       </tr>

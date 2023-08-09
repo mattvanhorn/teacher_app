@@ -1,31 +1,21 @@
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Size</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= render(@folder) %>
-  </tbody>
-</table>
-
-<h2>Documents</h2>
+<h2><%= @folder.name %></h2>
+<h3>Documents</h3>
+<ul>
 <%= render :partial => "documents/document_file", collection: @folder.documents, as: :document %>
-
-<div>
-  <% if policy(Document).create? %>
-    <p><%= link_to "Add a document", new_folder_document_path(@folder) %>
+</ul>
+<div class="my-3">
+  <% if policy(Document).create? && current_user == @folder.user %>
+    <%= link_to "Add a document", new_folder_document_path(@folder) %>
   <% end %>
-
+  &nbsp;
   <% if policy(@folder).edit? %>
-    <p><%= link_to "Rename this folder", edit_folder_path(@folder) %></p>
+    <%= link_to "Rename this folder", edit_folder_path(@folder) %>
+  <% end %>
+  &nbsp;
+  <% if policy(@folder).destroy? %>
+    <%= link_to "Destroy this folder", @folder, method: :delete, data: { "turbo-method": :delete, confirm: "Are you sure? This will destroy all included documents, too.", "turbo-confirm": "Are you sure? This will destroy all included documents, too." } %>
   <% end %>
 
   <p><%= link_to "Back to folders", folders_path %></p>
 
-  <% if policy(@folder).destroy? %>
-    <p><%= button_to "Destroy this folder", @folder, method: :delete, data: { confirm: "Are you sure? This will destroy all included documents, too." }  %></p>
-  <% end %>
 </div>

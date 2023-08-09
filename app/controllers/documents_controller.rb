@@ -33,12 +33,11 @@ class DocumentsController < ApplicationController
   # POST /documents or /folder/:folder_id/documents
   def create
     # prevent URL twiddling to create documents in other users' folders
-    folder = current_user.folders.find_by(id: params[:folder_id])
-    @document = Document.new(document_params.merge(folder: folder))
+    @document = Document.new(document_params.merge(folder: @folder))
 
     respond_to do |format|
       if @document.save
-        format.html { redirect_to document_url(@document), notice: "Document was successfully created." }
+        format.html { redirect_to documents_url, notice: "Document was successfully created." }
         format.json { render :show, status: :created, location: @document }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -51,7 +50,7 @@ class DocumentsController < ApplicationController
   def update
     respond_to do |format|
       if @document.update(document_params)
-        format.html { redirect_to document_url(@document), notice: "Document was successfully updated." }
+        format.html { redirect_to documents_url, notice: "Document was successfully updated." }
         format.json { render :show, status: :ok, location: @document }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -77,7 +76,8 @@ class DocumentsController < ApplicationController
     end
 
     def set_folder
-      @folder = current_user.folders.find_by(id: params[:folder_id])
+      folder_id = params.dig(:document, :folder_id)|| params[:folder_id]
+      @folder = current_user.folders.find_by(id: folder_id)
     end
 
     def authorize_user
@@ -86,6 +86,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:title, :file)
+      params.require(:document).permit(:title, :file, :folder_id)
     end
 end

@@ -1,49 +1,23 @@
-<h1>Hello CodePath</h1>
+<div class="flex flex-col my-4 items-left mx-4">
+    <p>Now at 7.5 hours.</p>
 
-<% if user_signed_in? %>
-<% case current_user.role %>
-    <% when "teacher" %>
-        <h2>My Folders</h2>
-        <div id="folders">
-        <table>
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Size</th>
-                <th>Actions</th>
-            </tr>
-            </thead>
-            <tbody>
-            <% current_user.folders.each do |folder| %>
-            <%= render folder %>
-            <% end %>
-            </tbody>
-        </table>
-        </div>
-        <%= link_to "New folder", new_folder_path %>
-    <% when "student" %>
-        <h2>Folders</h2>
-    <% end %>
-<% end %>
+    <h2>What I've done so far (barebones/unstyled):</h2>
+    <ul>
+        <li>Created a new Rails app</li>
+        <li>A way for teachers to sign up and create their accounts</li>
+        <li>Document upload and storage (local)</li>
+        <li>Display Markdown documents as web pages</li>
+        <li>Each file should be accessible on the public web via a unique URL</li>
+        <li>Access controls</li>
+        <li>Admin interface for us to manage teacher accounts</li>
+        <li>Student accounts </li>
+        <li>Folders of files</li>
+        <li>View metrics for documents</li>
+    </ul>
 
-<p>Now at 7.5 hours.</p>
-
-<h2>What I've done so far (barebones/unstyled):</h2>
-<ul>
-    <li>Created a new Rails app</li>
-    <li>A way for teachers to sign up and create their accounts</li>
-    <li>Document upload and storage (local)</li>
-    <li>Display Markdown documents as web pages</li>
-    <li>Each file should be accessible on the public web via a unique URL</li>
-    <li>Access controls</li>
-    <li>Admin interface for us to manage teacher accounts</li>
-    <li>Student accounts </li>
-    <li>Folders of files</li>
-    <li>View metrics for documents</li>
-</ul>
-
-<h2>Next up:</h2>
-<ul>
-    <li>Students being able to view a list of files in a folder</li>
-    <li>Revision history (maybe)</li>
-</ul>
+    <h2>Next up:</h2>
+    <ul>
+        <li>Students being able to view a list of files in a folder</li>
+        <li>Revision history (maybe)</li>
+    </ul>
+</div>

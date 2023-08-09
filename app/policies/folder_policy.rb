@@ -23,7 +23,7 @@ class FolderPolicy < ApplicationPolicy
   end
 
   def update?
-    @user.teacher?
+    @user.teacher? && owns_folder?
   end
 
   def edit?
@@ -31,7 +31,12 @@ class FolderPolicy < ApplicationPolicy
   end
 
   def destroy?
-    @user.teacher?
+    @user.teacher? && owns_folder?
   end
 
+  private
+
+  def owns_folder?
+    @folder.user == @user
+  end
 end

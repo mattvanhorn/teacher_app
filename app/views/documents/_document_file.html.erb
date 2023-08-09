@@ -1,5 +1,7 @@
-<%= document.title %>
-
-<% if document.file.attached? %>
-  <%= link_to document.file.filename, document_path(document, format: :preview) %>
-<% end %>
+  <p>
+    <%= document.title %>
+    &nbsp;
+    <% if document.file.attached? %>
+      <%= link_to document.file.filename, document_path(document, format: :preview) %>
+    <% end %>
+  </p>
