@@ -1,9 +1,14 @@
 <div class="flex flex-col my-4 items-left mx-4">
-    <p>Now at 7.5 hours.</p>
-
-    <h2>What I've done so far (barebones/unstyled):</h2>
+    <h1>README</h1>
+    <p><a href="https://github.com/mattvanhorn/teacher_app/" class="text-sky-500 underline">Github Repository</a></p>
+    <p>
+        Users can be created with one of three roles - teacher, student or admin. 
+        There is a pre-seeded admin account with email: "admin@example.com" and password: "Password".
+    </p>
+    <p>Each role has differences in the UI, and different permissions for actions they can take.</p>
+    <p>Navigation is in the upper right, and clicking on the name in the upper left returns here.</p>
+    <p>I implemented the following features, because they seemed core to the app</p>
     <ul>
-        <li>Created a new Rails app</li>
         <li>A way for teachers to sign up and create their accounts</li>
         <li>Document upload and storage (local)</li>
         <li>Display Markdown documents as web pages</li>
@@ -13,11 +18,12 @@
         <li>Student accounts </li>
         <li>Folders of files</li>
         <li>View metrics for documents</li>
-    </ul>
-
-    <h2>Next up:</h2>
-    <ul>
         <li>Students being able to view a list of files in a folder</li>
-        <li>Revision history (maybe)</li>
     </ul>
+    <p>Although I originally tried to use Paper Trail for versioning, it was not very useful since it did not handle differences in the attached file well.</p>
+    <p>
+        I was not sure what the desired behavior for "suggest changes" was, and I did not have time left to do something for it.
+        It would have been interesting to try to integrate ChatGPT as the suggestion source, rather than just attaching a comment or similar.
+    </p>
+
 </div>
